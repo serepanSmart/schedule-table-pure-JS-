@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import "variables.scss";
+@import "table.scss";
+@import "modal.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#app {
+    display: flex;
+    min-height: 100vh;
+    margin: auto;
+    max-width: 1000px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#schedule {
+    display: flex;
+    width: 100%;
+    margin: auto;
+}
+
+select,
+input {
+    width: 150px;
+    height: 40px;
+    border: 2px solid$active;
+    border-radius: 5px;
+    outline: transparent;
+    cursor: pointer;
+    justify-self: end;
+}
+
+#select-user:hover,
+#select-user:focus {
+    border: 2px solid #ac0909;
+}
+
+.main-btn {
+    min-width: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 5px;
+    background: #75a1f3;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    outline: transparent;
+    color: #000;
+}
+
+.main-btn_secondary {
+    background: #ebe6e6;
+}
+
+.main-btn span {
+    margin-right: 10px;
+}
+
+.main-btn:hover,
+.main-btn:focus {
+    background: $active;
+    color: $accent;
+}
+
+.main-btn:hover *,
+.main-btn:focus * {
+    color: $accent;
+    fill: $accent;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
