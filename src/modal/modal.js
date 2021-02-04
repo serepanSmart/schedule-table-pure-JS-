@@ -1,7 +1,7 @@
 import { freeDates, setScheduleWithParams } from '../index'
 import users from '../data/users'
+import events from '../data/events'
 
-const events = JSON.parse(localStorage.getItem('events')) || []
 const setToStorage = () => localStorage.setItem('events', JSON.stringify(events))
 
 const destroyElement = (el) => el.parentNode.removeChild(el)
@@ -77,7 +77,6 @@ const modalRender = () => {
   modal.addEventListener('click', (e) => {
     if (e.target.dataset.id === 'create') {
       events.push(newEvent)
-      console.log(events);
       destroyElement(modal)
       setToStorage()
       setScheduleWithParams()
@@ -86,6 +85,11 @@ const modalRender = () => {
     }
   })
 }
+
+const createEvent = modalRender
+
 const buttonCreate = document.querySelector('#create-event')
 
-export default buttonCreate.addEventListener('click', modalRender)
+buttonCreate.addEventListener('click', createEvent)
+
+export default createEvent

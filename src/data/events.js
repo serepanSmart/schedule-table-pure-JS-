@@ -1,4 +1,6 @@
-const events = [
+const events = JSON.parse(localStorage.getItem('events')) || []
+
+const newLocal = [
   {
     id: 'All',
     title: '',
@@ -20,8 +22,8 @@ const events = [
     name: 'Ivan',
   },
 ]
+const initEvents = newLocal
 
-localStorage.setItem('events', JSON.stringify(events))
-const dbEvents = JSON.parse(localStorage.getItem('events')) || []
+localStorage.setItem('events', JSON.stringify(initEvents))
 
-export default dbEvents
+export default events
