@@ -91,6 +91,8 @@ export const setScheduleWithParams = newSetSchedule
 
 setScheduleWithParams()
 
+// FILTER BY USER
+
 selectUser.addEventListener('change', () => {
   const newArr = events.filter(item => item.name === selectUser.value)
   clearCells(cells)
@@ -103,6 +105,8 @@ selectUser.addEventListener('change', () => {
     })
   })
 })
+
+// REMOVE EVENT
 
 table.addEventListener('click', (e) => {
   const trashTarget = e.target.dataset.delete
