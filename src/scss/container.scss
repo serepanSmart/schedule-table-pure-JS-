@@ -19,6 +19,10 @@
     flex-direction: row;
   }
 
+  h1 {
+    color: $accent;
+  }
+
   h1,
   button {
     margin-bottom: 15px;

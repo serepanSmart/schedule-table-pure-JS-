@@ -3,15 +3,10 @@ import headers from './data/headers'
 import time from './data/time'
 import {events, newEvents} from './data/events'
 import {confirmDeleteRender} from './modal/modal'
-import users from './data/users'
 
 events = JSON.parse(localStorage.getItem('events')) || newEvents
 
-const setToStorage = () => localStorage.setItem('events', JSON.stringify(events))
-
 // COMMON VARIABLES
-const WHITE = '#fff'
-
 const table = document.createElement('table')
 table.classList.add('table')
 const schedule = document.querySelector('#schedule')
@@ -19,21 +14,17 @@ const schedule = document.querySelector('#schedule')
 // SELECTION USER BLOCK
 const selectUser = document.querySelector('#select-user')
 
-const optionsUser = (opt) => `<option value="${opt.name}">${opt.name}</option>`
+const optionsUser = (opt) => `<option value="${opt}">${opt}</option>`
 
 const uniqueNames = []
 
-// const setOptionsUser = () => {
-//   const names = events.map(item => item.name)
-//   new Set(names).forEach(item => uniqueNames.push(item))
-//   const html = uniqueNames.map(optionsUser).join('')
-//   selectUser.innerHTML = html
-// }
-// setOptionsUser()
 const setOptionsUser = () => {
-  const html = events.map(optionsUser).join('')
+  const names = events.map(item => item.name)
+  new Set(names).forEach(item => uniqueNames.push(item))
+  const html = uniqueNames.map(optionsUser).join('')
   selectUser.innerHTML = html
 }
+
 setOptionsUser()
 
 // RENDERING TABLE
@@ -42,20 +33,20 @@ const render = () => {
   time.forEach((hour, y) => {
     const row = table.insertRow(y)
     row.id = hour.id
-    headers.forEach((header, x) => {
+    headers.forEach((day, x) => {
       const cell = row.insertCell(x)
       if (y === 0 && x === 0) {
-        cell.style.background = WHITE
+        cell.style.background = '#fff'
         cell.innerHTML = 'Time / Day'
       } else if (y === 0 && x > 0) {
         cell.classList.add('table__title')
-        cell.innerHTML = header.title
+        cell.innerHTML = day.title
       } else if (y > 0 && x === 0) {
         cell.classList.add('table__title')
         cell.innerHTML = hour.title
       } else {
         cell.classList.add('table__for-event')
-        cell.id = header.id + hour.id
+        cell.id = day.id + hour.id
       }
     })
   })
@@ -75,7 +66,7 @@ const clearCells = (arr) => arr.forEach(cell => {
   itemCell.innerHTML = ''
 })
 
-const setSchedule = (arr, ev, el) => {
+const setSchedule = (arr, ev, el,) => {
   const { value } = el
   for (const i of arr) {
     for (const j of ev) {
@@ -96,7 +87,7 @@ export const setScheduleWithParams = newSetSchedule
 
 setScheduleWithParams()
 
-selectUser.addEventListener('change', () => {
+selectUser.addEventListener('change', (e) => {
   setScheduleWithParams()
 })
 

@@ -8,6 +8,19 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  background: url(http://winallos.com/uploads/posts/2014-12/1419413048_nyu-york-neboskreby-gorod-nyc.jpg) center/cover no-repeat;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 0;
+  }
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px;}
@@ -20,12 +33,14 @@ body {
 ::-webkit-resizer { background-color: $active;}
 
 #app {
+  position: relative;
   display: flex;
   min-height: 100vh;
   margin: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 
   @media(min-width: 1200px) {
       max-width: 1000px;

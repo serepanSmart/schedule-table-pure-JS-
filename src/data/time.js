@@ -27,6 +27,18 @@ const time = [
     id: '15.00',
     title: '15.00',
   },
+  {
+    id: '16.00',
+    title: '16.00',
+  },
+  {
+    id: '17.00',
+    title: '17.00',
+  },
+  {
+    id: '18.00',
+    title: '18.00',
+  },
 ]
 
 export default time
