@@ -1,11 +1,11 @@
 import './scss/index.scss'
 import headers from './data/headers'
 import time from './data/time'
-// import users from './data/users'
-import events from './data/events'
-import createEvent from './modal/modal'
+import {events, newEvents} from './data/events'
+import {confirmDeleteRender} from './modal/modal'
+import users from './data/users'
 
-// const createEvent = modalRender
+events = JSON.parse(localStorage.getItem('events')) || newEvents
 
 const setToStorage = () => localStorage.setItem('events', JSON.stringify(events))
 
@@ -21,6 +21,15 @@ const selectUser = document.querySelector('#select-user')
 
 const optionsUser = (opt) => `<option value="${opt.name}">${opt.name}</option>`
 
+const uniqueNames = []
+
+// const setOptionsUser = () => {
+//   const names = events.map(item => item.name)
+//   new Set(names).forEach(item => uniqueNames.push(item))
+//   const html = uniqueNames.map(optionsUser).join('')
+//   selectUser.innerHTML = html
+// }
+// setOptionsUser()
 const setOptionsUser = () => {
   const html = events.map(optionsUser).join('')
   selectUser.innerHTML = html
@@ -55,9 +64,10 @@ const render = () => {
 render()
 
 // FILLING TABLE
-const cells = document.querySelectorAll('.table__for-event')
+export const cells = document.querySelectorAll('.table__for-event')
 const eventTemplate = (el, name, id) => `<div class="table__event">${el}, ${name} <span class="material-icons" data-delete="${id}">delete_forever</span></div>`
-export const freeDates = () => [...cells].filter(cell => !cell.hasChildNodes())
+const setFreeDates = () => [...cells].filter(cell => !cell.hasChildNodes())
+export const freeDates = setFreeDates
 freeDates()
 
 const clearCells = (arr) => arr.forEach(cell => {
@@ -72,7 +82,7 @@ const setSchedule = (arr, ev, el) => {
       if (i.id === j.id && value === 'All') {
         i.innerHTML = eventTemplate(j.title, j.name, j.id)
         freeDates()
-      } else if (i.id === j.id && j.name === value) {
+      } else if (i.id === j.id && value === j.name) {
         clearCells(arr)
         i.innerHTML = eventTemplate(j.title, j.name, j.id)
         freeDates()
@@ -81,7 +91,8 @@ const setSchedule = (arr, ev, el) => {
   }
 }
 
-export const setScheduleWithParams = () => setSchedule(cells, events, selectUser)
+const newSetSchedule = () => setSchedule(cells, events, selectUser)
+export const setScheduleWithParams = newSetSchedule
 
 setScheduleWithParams()
 
@@ -89,15 +100,9 @@ selectUser.addEventListener('change', () => {
   setScheduleWithParams()
 })
 
-// eslint-disable-next-line max-len
-const removeFromEvents = e => { events = events.filter((item) => item.id !== e.target.dataset.delete) }
-
 table.addEventListener('click', (e) => {
-  if (e.target.dataset.delete) {
-    removeFromEvents(e)
-    clearCells(cells)
-    setScheduleWithParams()
-    setToStorage()
+  const trashTarget = e.target.dataset.delete
+  if (trashTarget) {
+    confirmDeleteRender(trashTarget)
   }
 })
-
