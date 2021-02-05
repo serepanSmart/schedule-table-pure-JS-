@@ -10,7 +10,6 @@
         "arrow-parens": "off",
         "comma-dangle": "off",
         "require-jsdoc": "off",
-        "no-console": "off",
         "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
         "linebreak-style": 0
         
