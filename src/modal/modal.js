@@ -1,4 +1,4 @@
-import { freeDates, setScheduleWithParams, cells } from '../index'
+import { freeDates, setScheduleWithParams, cells, setToStorage} from '../index'
 import users from '../data/users'
 import {events, newEvents} from '../data/events'
 
@@ -26,8 +26,6 @@ let newEvent = {
 }
 
 const modalButtonsHtml = button => `<button type="button" class="${button.class}" data-id="${button.id}"><span class="material-icons" data-id="${button.id}">${button.icon} </span>${button.value}</button>`
-
-const setToStorage = () => localStorage.setItem('events', JSON.stringify(events))
 
 const destroyElement = (el) => {
   el.parentNode.removeChild(el)

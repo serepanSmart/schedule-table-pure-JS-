@@ -55,7 +55,7 @@ input {
   justify-self: end;
 
   &:hover {
-    border: 2px solid #ac0909;
+    border: 2px solid $decor;
   }
 
   &::placeholder {
@@ -66,39 +66,5 @@ input {
     &::placeholder {
       opacity: 0;
     }
-  }
-}
-
-.main-btn {
-  min-width: 165px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  border-radius: 5px;
-  background: #75a1f3;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-  outline: transparent;
-  color: #000;
-
-  &_secondary {
-    background: #ebe6e6;
-  }
-
-  &:hover,
-  &:focus {
-    background: $active;
-    color: $accent;
-
-    * {
-      color: $accent;
-      fill: $accent;
-    }
-  }
-
-  span {
-    margin-right: 10px;
   }
 }

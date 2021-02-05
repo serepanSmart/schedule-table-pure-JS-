@@ -14,13 +14,16 @@
 
 
   &-container {
-    width: 500px;
+    width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px;
     background: $accent;
     border-radius: 5px;
+    @media(min-width: 768px) {
+      width: 500px;
+    }
     
     input,
     select,
@@ -37,8 +40,12 @@
     align-items: center;
     justify-content: space-around;
 
-    button {
+    .main-btn {
       font-weight: bold;
+      min-width: 120px;
+      @media(min-width: 768px) {
+        min-width: 165px;
+      }
     }
   }
 }

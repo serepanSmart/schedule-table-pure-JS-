@@ -6,6 +6,10 @@ import {confirmDeleteRender} from './modal/modal'
 
 events = JSON.parse(localStorage.getItem('events')) || newEvents
 
+const toStorage = () => localStorage.setItem('events', JSON.stringify(events))
+
+export const setToStorage = toStorage
+
 // COMMON VARIABLES
 const table = document.createElement('table')
 table.classList.add('table')
@@ -66,7 +70,7 @@ const clearCells = (arr) => arr.forEach(cell => {
   itemCell.innerHTML = ''
 })
 
-const setSchedule = (arr, ev, el,) => {
+const setSchedule = (arr, ev, el) => {
   const { value } = el
   for (const i of arr) {
     for (const j of ev) {
@@ -87,8 +91,17 @@ export const setScheduleWithParams = newSetSchedule
 
 setScheduleWithParams()
 
-selectUser.addEventListener('change', (e) => {
-  setScheduleWithParams()
+selectUser.addEventListener('change', () => {
+  const newArr = events.filter(item => item.name === selectUser.value)
+  clearCells(cells)
+  selectUser.value === 'All' ? setScheduleWithParams() :
+  newArr.forEach(item => {
+    cells.forEach(cell => {
+      if (cell.id === item.id) {
+        cell.innerHTML = eventTemplate(item.title, item.name, item.id)
+      }
+    })
+  })
 })
 
 table.addEventListener('click', (e) => {
