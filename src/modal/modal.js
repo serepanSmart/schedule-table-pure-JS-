@@ -127,6 +127,7 @@ export const confirmDeleteRender = (target) => {
       if (e.target.dataset.delete === target) {
         cells.forEach((item) => (item.innerHTML = ''))
         removeFromEvents(e)
+        setToStorage()
         setScheduleWithParams()
         destroyElement(modal)
       } else if (e.target.dataset.id === 'close') {
