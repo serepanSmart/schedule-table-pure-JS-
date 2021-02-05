@@ -92,6 +92,7 @@ const modalRender = () => {
     const inputName = document.createElement('input')
     inputName.id = 'event-name'
     modalContainer.append(inputName)
+    inputName.placeholder = 'Type event name here...'
     inputName.onchange = () => {
       newEvent.title = inputName.value
     }
